@@ -15,9 +15,6 @@ export function validateUserCreation(req, res, next) {
 
     next();
   } catch(err) {
-    res.json({
-      message: "Invalid data",
-      details: err.details
-    });
+    next(err);
   }
 }

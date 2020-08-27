@@ -14,7 +14,7 @@ export default [
         type: 'home'
       },
       {
-        number: asdasda,
+        number: 122222,
         type: 'work'
       }
     ]
