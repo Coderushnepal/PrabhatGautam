@@ -1,12 +1,11 @@
 import morgan from 'morgan';
+import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 
 import routes from './src/routes';
 import logger from './src/utils/logger';
 import genericErrorHandler from './src/middlewares/genericErrorHandler';
-
-const appPort = 1234;
 
 const loggingMiddleware = (req, res, next) => {
   const url = req.url;
@@ -25,7 +24,8 @@ app.use(loggingMiddleware);
 app.use(routes);
 app.use(genericErrorHandler);
 
-app.listen(appPort, () => {
-  logger.info(`Listening on port ${appPort}`);
-});
+dotenv.config();
 
+app.listen(process.env.APP_PORT, () => {
+  logger.info(`Listening on port ${process.env.APP_PORT}`);
+});
