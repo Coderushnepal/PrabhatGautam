@@ -5,6 +5,8 @@ import bodyParser from 'body-parser';
 import routes from './src/routes';
 import logger from './src/utils/logger';
 
+const appPort = 1234;
+
 const loggingMiddleware = (req, res, next) => {
   const url = req.url;
   const method = req.method;
@@ -21,7 +23,7 @@ app.use(morgan('tiny'));
 app.use(loggingMiddleware);
 app.use(routes);
 
-app.listen(1234, () => {
-  console.log('Listening on port 1234 ');
+app.listen(appPort, () => {
+  logger.info(`Listening on port ${appPort}`);
 });
 
