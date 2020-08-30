@@ -8,13 +8,10 @@ import * as userService from '../services/user';
  * @param next 
  */
 export function getAllUsers(req, res, next) {
-  try {
-    const data = userService.getAllUsers();
-
-    res.json(data);
-  } catch(err) {
-    next(err);
-  }
+  userService
+    .getAllUsers()
+    .then(data => res.json(data))
+    .catch(err => next(err));
 }
 
 /**
@@ -25,15 +22,10 @@ export function getAllUsers(req, res, next) {
  * @param next 
  */
 export function getUserById(req, res, next) {
-  const userId = +req.params.userId;
-
-  try {
-    const data = userService.getUserById(userId);
-
-    res.json(data);
-  } catch(err) {
-    next(err);
-  }
+  userService
+    .getUserById(+req.params.userId)
+    .then(data => res.json(data))
+    .catch(err => next(err));
 }
 
 /**

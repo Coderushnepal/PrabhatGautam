@@ -1,3 +1,4 @@
+import connection from '../db';
 import logger from '../utils/logger';
 import usersJson from '../data/users';
 import NotFoundError from '../utils/NotFoundError';
@@ -5,12 +6,13 @@ import NotFoundError from '../utils/NotFoundError';
 /**
  * Get all users.
  */
-export function getAllUsers() {
+export async function getAllUsers() {
   logger.info('Fetching all users');
+  const data = await connection.select('*').from('users');
 
   return {
-    message: 'List of all users',
-    data: usersJson
+    data,
+    message: 'List of all users'
   };
 }
 
@@ -19,20 +21,20 @@ export function getAllUsers() {
  *
  * @param userId 
  */
-export function getUserById(userId) {
+export async function getUserById(userId) {
   logger.info(`Fetching user information with id ${userId}`);
 
-  const requestedUser = usersJson.find(user => user.id === userId);
+  const [result] = await connection.select('*').from('users').where('id', userId);
 
-  if(!requestedUser) {
+  if(!result) {
     logger.error(`Cannot find the user with id ${userId}`);
 
     throw new NotFoundError(`Cannot find the user with id ${userId}`);
   }
 
   return {
-    message: `Information about userId ${userId}`,
-    data: requestedUser
+    data: result,
+    message: `Information about userId ${userId}`
   };
 }
 
