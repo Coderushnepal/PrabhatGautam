@@ -36,15 +36,10 @@ export function getUserById(req, res, next) {
  * @param next 
  */
 export function createUser(req, res, next) {
-  const params = req.body;
-
-  try {
-    const data = userService.createUser(params);
-
-    res.json(data);
-  } catch(err) {
-    next(err);
-  }
+  userService
+    .createUser(req.body)
+    .then(data => res.json(data))
+    .catch(err => next(err));
 }
 
 /**

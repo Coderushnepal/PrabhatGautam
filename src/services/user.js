@@ -1,14 +1,15 @@
-import connection from '../db';
 import logger from '../utils/logger';
 import usersJson from '../data/users';
+import * as User from '../models/User';
 import NotFoundError from '../utils/NotFoundError';
+import * as UserPhoneNumber from '../models/UserPhoneNumber';
 
 /**
  * Get all users.
  */
 export async function getAllUsers() {
   logger.info('Fetching all users');
-  const data = await connection.select('*').from('users');
+  const data = await User.getAll();
 
   return {
     data,
@@ -24,7 +25,7 @@ export async function getAllUsers() {
 export async function getUserById(userId) {
   logger.info(`Fetching user information with id ${userId}`);
 
-  const [result] = await connection.select('*').from('users').where('id', userId);
+  const result = await User.getById(userId);
 
   if(!result) {
     logger.error(`Cannot find the user with id ${userId}`);
@@ -43,23 +44,26 @@ export async function getUserById(userId) {
  * 
  * @param params 
  */
-export function createUser(params) {
-  // Finding the maximum id from existing JSON file
-  const maxId = usersJson.reduce((acc, cur) => {
-    return cur.id > acc ? cur.id : acc;
-  }, 0);
+export async function createUser(params) {
+  const { firstName, lastName, email, password, phoneNumbers} = params;
+  const userInsertData = await User.create({
+    firstName,
+    lastName,
+    email,
+    password
+  });
 
-  usersJson.push({
-    id: maxId + 1,
-    ...params
-  })
+  const insertDataForPhoneNumbers = phoneNumbers.map(phone => ({
+    userId: userInsertData.id,
+    phoneNumber: phone.number,
+    type: phone.type
+  }));
+
+  const phoneNumberInsertedData = await UserPhoneNumber.add(insertDataForPhoneNumbers);
 
   return {
-    message: "New user added successfully",
-    data: {
-      id: maxId + 1,
-      ...params
-    }
+    data: params,
+    message: "New user added successfully"
   };
 }
 
