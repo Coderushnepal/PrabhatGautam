@@ -14,7 +14,7 @@ const CREATE_USER_SCHEMA = Joi.object().keys({
 const UPDATE_USER_SCHEMA = Joi.object().keys({
   firstName: Joi.string().max(20),
   lastName: Joi.string().max(20)
-});
+}).min(1);
 
 export function validateUserCreation(req, res, next) {
   try {
