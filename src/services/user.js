@@ -9,7 +9,16 @@ import * as UserPhoneNumber from '../models/UserPhoneNumber';
  */
 export async function getAllUsers() {
   logger.info('Fetching all users');
-  const data = await User.getAll();
+  const users = await User.getAll();
+  const data = users.map(user => {
+    const { phoneNumbers } = user;
+    const hasEmptyPhoneNumber = Object.keys(phoneNumbers[0]).length === 0;
+
+    return {
+      ...user,
+      phoneNumbers: hasEmptyPhoneNumber? [] : phoneNumbers
+    };
+  });
 
   return {
     data,
@@ -23,18 +32,15 @@ export async function getAllUsers() {
  * @param userId 
  */
 export async function getUserById(userId) {
-  logger.info(`Fetching user information with id ${userId}`);
+  const result = await verifyUserExistence(userId);
 
-  const result = await User.getById(userId);
-
-  if(!result) {
-    logger.error(`Cannot find the user with id ${userId}`);
-
-    throw new NotFoundError(`Cannot find the user with id ${userId}`);
-  }
+  const phoneNumbers = await UserPhoneNumber.getPhoneNumbersByUserId(userId);
 
   return {
-    data: result,
+    data: {
+      ...result,
+      phoneNumbers
+    },
     message: `Information about userId ${userId}`
   };
 }
@@ -71,18 +77,10 @@ export async function createUser(params) {
  * Delete a user
  * @param userId 
  */
-export function deleteUser(userId) {
-  const doesUserExist = usersJson.find(user => user.id === userId);
+export async function deleteUser(userId) {
+  await verifyUserExistence(userId);
 
-  if(!doesUserExist) {
-    logger.error(`Cannot find user with id ${userId}`);
-    
-    throw new Error(`Cannot find user with id ${userId}`);
-  }
-
-  const updatedUsersList = usersJson.filter(user => user.id !== userId);
-
-  fs.writeFileSync(usersJsonPath, JSON.stringify(updatedUsersList, null, 2));
+  await User.remove(userId);
 
   return {
     message: "Deleted user with id " + userId
@@ -95,21 +93,30 @@ export function deleteUser(userId) {
  * @param userId 
  * @param params 
  */
-export function updateUser(userId, params) {
-  const updatedJson = usersJson.map(user => {
-    if(user.id === userId) {
-      return {
-        ...user,
-        ...params
-      };
-    }
+export async function updateUser(userId, params) {
+  const result = await verifyUserExistence(userId);
 
-    return user;
-  });
-
-  fs.writeFileSync(usersJsonPath, JSON.stringify(updatedJson, null, 2));
+  await User.update(userId, params);
 
   return {
+    data: {
+      ...result,
+      ...params
+    },
     message: "Updated user with id " + userId
   };
+}
+
+async function verifyUserExistence(userId) {
+  logger.info(`Fetching user information with id ${userId}`);
+
+  const result = await User.getById(userId);
+
+  if(!result) {
+    logger.error(`Cannot find the user with id ${userId}`);
+
+    throw new NotFoundError(`Cannot find the user with id ${userId}`);
+  }
+
+  return result;
 }
