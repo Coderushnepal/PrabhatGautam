@@ -1,5 +1,9 @@
-export const GET_USERS = '/users';
-export const GET_USER_BY_ID = '/users/:userId';
+// User endpoints
 export const CREATE_USER = '/users';
-export const DELETE_USER = '/users/:userId';
-export const UPDATE_USER = '/users/:userId';
+
+// Todo endpoints
+export const ADD_TODO = '/users/:userId/todos';
+export const UPDATE_TODO = '/users/:userId/todos/:todoId';
+export const REMOVE_TODO = '/users/:userId/todos/:todoId';
+export const GET_ALL_TODOS = '/users/:userId/todos';
+export const GET_TODO_BY_ID = '/users/:userId/todos/:todoId';

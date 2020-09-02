@@ -15,3 +15,9 @@ export async function getUserByEmail(email) {
 
   return data ? camelize(data) : null;
 }
+
+export async function getUserById(id) {
+  const [data] = await connection.select('*').from(table).where({ id });
+
+  return data ? camelize(data) : null;
+}

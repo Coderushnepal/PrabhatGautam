@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import * as endpoints from './constants/endpoints';
 import * as userController from './controllers/user';
+import * as todoController from './controllers/todo';
 import { validateUserCreation } from './schemas/user';
 
 const router = Router();
@@ -14,5 +15,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.post(endpoints.CREATE_USER, validateUserCreation, userController.createUser);
+
+router.get(endpoints.GET_ALL_TODOS, todoController.getAllTodos);
+
+router.get(endpoints.GET_TODO_BY_ID, todoController.getTodoById);
 
 export default router;
