@@ -1,3 +1,8 @@
+/**
+ * Create 'users' table
+ *
+ * @param  knex
+ */
 export function up(knex) {
   return knex.schema.createTable('users', table => {
     table.increments('id');
@@ -10,6 +15,11 @@ export function up(knex) {
   });
 }
 
+/**
+ * Drop 'users' table
+ *
+ * @param  knex
+ */
 export function down(knex) {
   return knex.schema.dropTable('users');
 }
