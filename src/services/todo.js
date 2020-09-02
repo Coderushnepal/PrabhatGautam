@@ -18,7 +18,7 @@ export async function getAllTodos(userId) {
   return {
     data,
     message: `List of todos for userId ${userId}`
-  }
+  };
 }
 
 /**
@@ -43,7 +43,7 @@ export async function getTodoById(userId, todoId) {
   return {
     data,
     message: `Todo details for todoId ${todoId} and userId ${userId}`
-  }
+  };
 }
 
 /**
@@ -60,7 +60,7 @@ export async function addTodo(userId, todoText) {
   return {
     data,
     message: `New todo added succesfully for userId ${userId}`
-  }
+  };
 }
 
 /**
@@ -78,5 +78,5 @@ export async function removeTodo(userId, todoId) {
 
   return {
     message: `Removed todoId ${todoId} for userId ${userId}`
-  }
+  };
 }

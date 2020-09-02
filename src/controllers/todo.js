@@ -2,10 +2,10 @@ import * as todoService from '../services/todo';
 
 /**
  * Controller to get all todos
- * 
- * @param req 
- * @param res 
- * @param next 
+ *
+ * @param req
+ * @param res
+ * @param next
  */
 export function getAllTodos(req, res, next) {
   todoService
@@ -16,10 +16,10 @@ export function getAllTodos(req, res, next) {
 
 /**
  * Controller to get specific todo for a user.
- * 
- * @param req 
- * @param res 
- * @param next 
+ *
+ * @param req
+ * @param res
+ * @param next
  */
 export function getTodoById(req, res, next) {
   const { userId, todoId } = req.params;
@@ -32,10 +32,10 @@ export function getTodoById(req, res, next) {
 
 /**
  * Controller to add a todo for a user.
- * 
- * @param req 
- * @param res 
- * @param next 
+ *
+ * @param req
+ * @param res
+ * @param next
  */
 export function addTodo(req, res, next) {
   todoService
@@ -46,10 +46,10 @@ export function addTodo(req, res, next) {
 
 /**
  * Controller to remove a todo for a user.
- * 
- * @param req 
- * @param res 
- * @param next 
+ *
+ * @param req
+ * @param res
+ * @param next
  */
 export function removeTodo(req, res, next) {
   todoService

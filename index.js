@@ -14,7 +14,7 @@ const loggingMiddleware = (req, res, next) => {
   logger.info(`${method} ${url}`);
 
   next();
-}
+};
 
 const app = express();
 

@@ -5,8 +5,8 @@ import BadRequestError from '../utils/BadRequestError';
 
 /**
  * Create a user
- * 
- * @param params 
+ *
+ * @param params
  */
 export async function createUser(params) {
   const existingUser = await User.getUserByEmail(params.email);
@@ -21,7 +21,7 @@ export async function createUser(params) {
 
   return {
     data: userInsertData,
-    message: "New user added successfully"
+    message: 'New user added successfully'
   };
 }
 

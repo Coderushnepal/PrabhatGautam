@@ -12,7 +12,7 @@ export function validateUserCreation(req, res, next) {
     Joi.assert(req.body, CREATE_USER_SCHEMA);
 
     next();
-  } catch(err) {
+  } catch (err) {
     next(err);
   }
 }

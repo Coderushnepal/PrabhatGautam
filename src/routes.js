@@ -8,7 +8,7 @@ import { validateUserCreation } from './schemas/user';
 
 const router = Router();
 
-router.get('/', (req, res, next) => {  
+router.get('/', (req, res, next) => {
   res.json({
     name: 'todo-api',
     version: '1.0.0'

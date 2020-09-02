@@ -9,7 +9,7 @@ export function validateAddTodo(req, res, next) {
     Joi.assert(req.body, ADD_TODO_SCHEMA);
 
     next();
-  } catch(err) {
+  } catch (err) {
     next(err);
   }
 }
