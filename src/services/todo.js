@@ -45,3 +45,20 @@ export async function getTodoById(userId, todoId) {
     message: `Todo details for todoId ${todoId} and userId ${userId}`
   }
 }
+
+/**
+ * Add a todo for a user
+ *
+ * @param userId
+ * @param todoText
+ */
+export async function addTodo(userId, todoText) {
+  await verifyUser(userId);
+
+  const data = await UserTodo.add(userId, todoText);
+
+  return {
+    data,
+    message: `New todo added succesfully for userId ${userId}`
+  }
+}

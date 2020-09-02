@@ -29,3 +29,17 @@ export function getTodoById(req, res, next) {
     .then(data => res.json(data))
     .catch(err => next(err));
 }
+
+/**
+ * Controller to add a todo for a user.
+ * 
+ * @param req 
+ * @param res 
+ * @param next 
+ */
+export function addTodo(req, res, next) {
+  todoService
+    .addTodo(+req.params.userId, req.body.todoText)
+    .then(data => res.json(data))
+    .catch(err => next(err));
+}

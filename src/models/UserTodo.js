@@ -21,3 +21,12 @@ export async function getTodoById(userId, todoId) {
 
   return data[0] ? camelize(data[0]) : null;
 }
+
+export async function add(userId, todoText) {
+  const [insertedData] = await connection
+    .insert({ 'user_id': userId, 'todo_text': todoText })
+    .into(table)
+    .returning('*');
+
+  return camelize(insertedData);
+}
