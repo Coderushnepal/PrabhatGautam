@@ -1,5 +1,5 @@
 /**
- * Create 'users' table
+ * Create 'users' table.
  *
  * @param  knex
  */
@@ -16,7 +16,7 @@ export function up(knex) {
 }
 
 /**
- * Drop 'users' table
+ * Drop 'users' table.
  *
  * @param  knex
  */

@@ -9,7 +9,8 @@
     "build": "rimraf dist && babel src/ index.js  --copy-files --out-dir dist",
     "migrate": "yarn knex migrate:latest --knexfile src/knexfile.js",
     "rollback": "yarn knex migrate:rollback --knexfile src/knexfile.js",
-    "prettify": "yarn prettier --write index.js src/"
+    "prettify": "yarn prettier --write **/*.{js,json,md}",
+    "lint": "eslint src index.js --fix"
   },
   "husky": {
     "hooks": {
@@ -37,6 +38,7 @@
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.0",
     "@babel/register": "^7.10.5",
+    "eslint": "^7.8.1",
     "husky": "^4.2.5",
     "prettier": "^2.1.1"
   }

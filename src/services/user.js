@@ -4,7 +4,7 @@ import NotFoundError from '../utils/NotFoundError';
 import BadRequestError from '../utils/BadRequestError';
 
 /**
- * Create a user
+ * Create a user.
  *
  * @param params
  */

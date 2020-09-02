@@ -1,7 +1,7 @@
 import * as userService from '../services/user';
 
 /**
- * Controller to create a new user
+ * Controller to create a new user.
  *
  * @param req
  * @param res

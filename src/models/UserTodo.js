@@ -1,5 +1,4 @@
 import connection from '../db';
-import snakeize from 'snakeize';
 import camelize from 'camelize';
 
 const table = 'user_todos';

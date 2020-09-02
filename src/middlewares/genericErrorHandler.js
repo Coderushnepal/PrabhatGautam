@@ -35,6 +35,7 @@ export default function genericErrorHandler(err, req, res, next) {
   }
 
   const errorMessage = err.message ? err.message : HttpStatusCodes.getStatusText(HttpStatusCodes.INTERNAL_SERVER_ERROR);
+
   if (err) {
     res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
       code: HttpStatusCodes.INTERNAL_SERVER_ERROR,

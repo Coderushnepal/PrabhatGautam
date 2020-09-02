@@ -47,7 +47,7 @@ export async function getTodoById(userId, todoId) {
 }
 
 /**
- * Add a todo for a user
+ * Add a todo for a user.
  *
  * @param userId
  * @param todoText

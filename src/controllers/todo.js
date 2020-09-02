@@ -1,7 +1,7 @@
 import * as todoService from '../services/todo';
 
 /**
- * Controller to get all todos
+ * Controller to get all todos.
  *
  * @param req
  * @param res

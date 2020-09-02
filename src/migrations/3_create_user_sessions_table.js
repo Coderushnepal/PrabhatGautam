@@ -1,5 +1,5 @@
 /**
- * Create 'user_sessions' table
+ * Create 'user_sessions' table.
  *
  * @param  knex
  */
@@ -14,7 +14,7 @@ export function up(knex) {
 }
 
 /**
- * Drop 'user_sessions' table
+ * Drop 'user_sessions' table.
  *
  * @param  knex
  */
