@@ -23,4 +23,6 @@ router.get(endpoints.GET_TODO_BY_ID, todoController.getTodoById);
 
 router.post(endpoints.ADD_TODO, validateAddTodo, todoController.addTodo);
 
+router.delete(endpoints.REMOVE_TODO, todoController.removeTodo);
+
 export default router;

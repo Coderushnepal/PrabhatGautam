@@ -43,3 +43,17 @@ export function addTodo(req, res, next) {
     .then(data => res.json(data))
     .catch(err => next(err));
 }
+
+/**
+ * Controller to remove a todo for a user.
+ * 
+ * @param req 
+ * @param res 
+ * @param next 
+ */
+export function removeTodo(req, res, next) {
+  todoService
+    .removeTodo(+req.params.userId, +req.params.todoId)
+    .then(data => res.json(data))
+    .catch(err => next(err));
+}

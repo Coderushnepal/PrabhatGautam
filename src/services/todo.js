@@ -62,3 +62,21 @@ export async function addTodo(userId, todoText) {
     message: `New todo added succesfully for userId ${userId}`
   }
 }
+
+/**
+ * Remove a todo for a user.
+ *
+ * @param userId
+ * @param todoId
+ */
+export async function removeTodo(userId, todoId) {
+  await verifyUser(userId);
+
+  logger.info(`Removing todoId ${todoId} for userId ${userId}`);
+
+  await UserTodo.removeTodo(userId, todoId);
+
+  return {
+    message: `Removed todoId ${todoId} for userId ${userId}`
+  }
+}
