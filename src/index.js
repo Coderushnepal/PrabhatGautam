@@ -16,6 +16,8 @@ const loggingMiddleware = (req, res, next) => {
   next();
 };
 
+dotenv.config();
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -23,8 +25,6 @@ app.use(morgan('tiny'));
 app.use(loggingMiddleware);
 app.use(routes);
 app.use(genericErrorHandler);
-
-dotenv.config();
 
 app.listen(process.env.APP_PORT, () => {
   logger.info(`Listening on port ${process.env.APP_PORT}`);

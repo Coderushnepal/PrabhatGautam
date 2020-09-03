@@ -1,4 +1,5 @@
 import logger from '../utils/logger';
+import { hash } from '../utils/crypt';
 import * as User from '../models/User';
 import NotFoundError from '../utils/NotFoundError';
 import BadRequestError from '../utils/BadRequestError';
@@ -17,7 +18,9 @@ export async function createUser(params) {
     throw new BadRequestError('There is already an existing user with this email');
   }
 
-  const userInsertData = await User.create(params);
+  const hashedPassword = hash(params.password);
+
+  const userInsertData = await User.create({ ...params, password: hashedPassword });
 
   return {
     data: userInsertData,
