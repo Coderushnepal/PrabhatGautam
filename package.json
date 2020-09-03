@@ -10,7 +10,8 @@
     "rollback": "yarn knex migrate:rollback --knexfile src/knexfile.js",
     "seed": "yarn knex seed:run --knexfile src/knexfile.js",
     "prettify": "yarn prettier --loglevel silent --write **/*.{js,json,md}",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "make:migration": "yarn knex migrate:make --knexfile src/knexfile.js"
   },
   "husky": {
     "hooks": {

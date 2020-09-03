@@ -14,7 +14,8 @@ const dbConfig = {
   },
   migrations: {
     directory: './migrations',
-    table: 'migrations'
+    table: 'migrations',
+    stub: './stubs/migration.stub'
   },
   seeds: {
     directory: './seeds'
