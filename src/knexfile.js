@@ -15,6 +15,9 @@ const dbConfig = {
   migrations: {
     directory: './migrations',
     table: 'migrations'
+  },
+  seeds: {
+    directory: './seeds'
   }
 };
 
