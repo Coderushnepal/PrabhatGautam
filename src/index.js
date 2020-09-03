@@ -3,9 +3,9 @@ import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import routes from './src/routes';
-import logger from './src/utils/logger';
-import genericErrorHandler from './src/middlewares/genericErrorHandler';
+import routes from './routes';
+import logger from './utils/logger';
+import genericErrorHandler from './middlewares/genericErrorHandler';
 
 const loggingMiddleware = (req, res, next) => {
   const url = req.url;

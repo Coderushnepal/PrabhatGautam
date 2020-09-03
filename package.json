@@ -2,15 +2,14 @@
   "name": "todo-api",
   "version": "1.0.0",
   "description": "A simple todo API",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch index.js --watch src/ --exec babel-node index.js",
-    "build": "rimraf dist && babel src/ index.js  --copy-files --out-dir dist",
+    "start": "nodemon --watch --watch src/ --exec babel-node src/",
+    "build": "rimraf dist && babel src/ --copy-files --out-dir dist",
     "migrate": "yarn knex migrate:latest --knexfile src/knexfile.js",
     "rollback": "yarn knex migrate:rollback --knexfile src/knexfile.js",
     "prettify": "yarn prettier --write **/*.{js,json,md}",
-    "lint": "eslint src index.js --fix"
+    "lint": "eslint src --fix"
   },
   "husky": {
     "hooks": {
