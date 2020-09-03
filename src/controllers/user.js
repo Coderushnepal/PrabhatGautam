@@ -13,3 +13,17 @@ export function createUser(req, res, next) {
     .then(data => res.json(data))
     .catch(err => next(err));
 }
+
+/**
+ * Controller for user login.
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+export function login(req, res, next) {
+  userService
+    .login(req.body)
+    .then(data => res.json(data))
+    .catch(err => next(err));
+}

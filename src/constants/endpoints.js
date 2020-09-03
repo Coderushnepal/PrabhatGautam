@@ -1,4 +1,5 @@
 // User endpoints
+export const LOGIN = '/users/login';
 export const CREATE_USER = '/users';
 
 // Todo endpoints
