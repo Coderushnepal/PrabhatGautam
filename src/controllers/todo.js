@@ -57,3 +57,17 @@ export function removeTodo(req, res, next) {
     .then(data => res.json(data))
     .catch(err => next(err));
 }
+
+/**
+ * Controller to update a todo for a user.
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+export function updateTodo(req, res, next) {
+  todoService
+    .updateTodo(+req.params.userId, +req.params.todoId, req.body)
+    .then(data => res.json(data))
+    .catch(err => next(err));
+}

@@ -1,5 +1,6 @@
 import connection from '../db';
 import camelize from 'camelize';
+import snakeize from 'snakeize';
 
 const table = 'user_todos';
 
@@ -30,4 +31,13 @@ export async function add(userId, todoText) {
 
 export async function removeTodo(userId, todoId) {
   await connection(table).update({ is_active: false }).where({ user_id: userId, id: todoId });
+}
+
+export async function updateTodo(userId, todoId, updateParams) {
+  const [updatedData] = await connection(table)
+    .update(snakeize(updateParams))
+    .where({ user_id: userId, id: todoId })
+    .returning('*');
+
+  return camelize(updatedData);
 }

@@ -80,3 +80,23 @@ export async function removeTodo(userId, todoId) {
     message: `Removed todoId ${todoId} for userId ${userId}`
   };
 }
+
+/**
+ * Update a todo for a user. Either update the todo text or mark it as completed.
+ *
+ * @param userId
+ * @param todoId
+ * @param updateParams
+ */
+export async function updateTodo(userId, todoId, updateParams) {
+  await verifyUser(userId);
+
+  logger.info(`Updating todoId ${todoId} for userId ${userId}`);
+
+  const data = await UserTodo.updateTodo(userId, todoId, updateParams);
+
+  return {
+    data,
+    message: `Updated todoId ${todoId} for userId ${userId}`
+  };
+}
