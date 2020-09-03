@@ -14,7 +14,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn prettify && git add ."
+      "pre-commit": "yarn lint && yarn prettify && git add ."
     }
   },
   "dependencies": {

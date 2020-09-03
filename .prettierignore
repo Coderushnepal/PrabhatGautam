@@ -1,0 +1,9 @@
+# Build directory
+dist
+
+# Minified files
+**/*{.,-}min.js
+
+# Logs
+*.log
+logs

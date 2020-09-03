@@ -35,7 +35,7 @@ How to use?
    ```
    $ yarn seed
    ```
-7. Start the node server
+8. Start the node server
    ```
    $ yarn start
    ```
