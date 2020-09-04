@@ -4,7 +4,8 @@
   "description": "A simple todo API",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch src --exec babel-node src",
+    "start:dev": "nodemon --watch src --exec babel-node src",
+    "start": "nodemon dist/index.js",
     "build": "rimraf dist && babel src/ --copy-files --out-dir dist",
     "migrate": "yarn knex migrate:latest --knexfile src/knexfile.js",
     "rollback": "yarn knex migrate:rollback --knexfile src/knexfile.js",
