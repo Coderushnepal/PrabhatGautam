@@ -26,6 +26,6 @@ app.use(loggingMiddleware);
 app.use(routes);
 app.use(genericErrorHandler);
 
-app.listen(process.env.APP_PORT, () => {
-  logger.info(`Listening on port ${process.env.APP_PORT}`);
+app.listen(process.env.PORT, () => {
+  logger.info(`Listening on port ${process.env.PORT}`);
 });
