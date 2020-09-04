@@ -1,7 +1,7 @@
 import logger from '../utils/logger';
 import * as User from '../models/User';
+import { generateToken } from '../utils/jwt';
 import { hash, compare } from '../utils/crypt';
-import { generateToken } from '../utils/string';
 import NotFoundError from '../utils/NotFoundError';
 import * as UserSession from '../models/UserSession';
 import BadRequestError from '../utils/BadRequestError';
@@ -54,7 +54,12 @@ export async function login(params) {
     throw new BadRequestError('Invalid login credentials');
   }
 
-  const token = generateToken();
+  const token = generateToken({
+    id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email
+  });
 
   await UserSession.saveToken(user.id, token);
 
