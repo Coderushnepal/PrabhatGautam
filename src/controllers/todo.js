@@ -9,7 +9,7 @@ import * as todoService from '../services/todo';
  */
 export function getAllTodos(req, res, next) {
   todoService
-    .getAllTodos(+req.params.userId)
+    .getAllTodos(+req.user.id)
     .then(data => res.json(data))
     .catch(err => next(err));
 }
@@ -22,10 +22,10 @@ export function getAllTodos(req, res, next) {
  * @param next
  */
 export function getTodoById(req, res, next) {
-  const { userId, todoId } = req.params;
+  const { todoId } = req.params;
 
   todoService
-    .getTodoById(+userId, +todoId)
+    .getTodoById(+req.user.id, +todoId)
     .then(data => res.json(data))
     .catch(err => next(err));
 }
@@ -39,7 +39,7 @@ export function getTodoById(req, res, next) {
  */
 export function addTodo(req, res, next) {
   todoService
-    .addTodo(+req.params.userId, req.body.todoText)
+    .addTodo(+req.user.id, req.body.todoText)
     .then(data => res.json(data))
     .catch(err => next(err));
 }
@@ -53,7 +53,7 @@ export function addTodo(req, res, next) {
  */
 export function removeTodo(req, res, next) {
   todoService
-    .removeTodo(+req.params.userId, +req.params.todoId)
+    .removeTodo(+req.user.id, +req.params.todoId)
     .then(data => res.json(data))
     .catch(err => next(err));
 }
@@ -67,7 +67,7 @@ export function removeTodo(req, res, next) {
  */
 export function updateTodo(req, res, next) {
   todoService
-    .updateTodo(+req.params.userId, +req.params.todoId, req.body)
+    .updateTodo(+req.user.id, +req.params.todoId, req.body)
     .then(data => res.json(data))
     .catch(err => next(err));
 }
